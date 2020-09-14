@@ -1,34 +1,48 @@
 'use strict';
-
-//задания на разборе с Лескиным
-
-
-
-// function one() {
-//     let x = 10;
-
-//     function two(y) {
-//         return x + y;
-//     }
-
-//     function three() {
-//         let y = 5;
-//         return x * y;
-//     }
-
-//     return two(15);
+///////////////////////////////////////////////
+// let isNumber = function(n) {
+//     return !isNaN(parseFloat(n)) && isFinite(n);
 // }
-// // какой бы аргумент не поставил в консоль лог ниже, 
-// // х, все равно, будет считать равны 10, так как пузырьковый эффект
-// // функция two не найдет внутри себя значени х и поднимется на уровень выше
-// // и найдет там заданный х
-// // 
-// console.log(one());
 
 // Задание №6.
-let randomNumber = Math.round(Math.random() * 100);
-let a = prompt('Угадай число от 1 до 100');
+let randomNumber;
 
-a > randomNumber ? 'Доступ запрещен' : a < randomNumber ? 'Загаданное число меньше'
-)
-console.log(randomNumber);
+function random() {
+    randomNumber = Math.round(Math.random() * 100);
+    console.log(randomNumber);;
+}
+
+random();
+
+function guessing() {
+
+    let userNumber = prompt('Угадайте число!');
+
+    function messageOut() {
+
+        if (userNumber == null || userNumber == randomNumber) {
+            if (userNumber == null) {
+                alert('Жаль что отменили игру!');
+            } else {
+                if (userNumber == randomNumber) {
+                    alert('Угадал! Игра закончена');
+                }
+            }
+        } else {
+            if (userNumber > randomNumber) {
+                alert('Загаданное число меньше! Повторите поптыку!');
+                guessing();
+            } else {
+                if (userNumber < randomNumber) {
+                    alert('Загаданное число больше! Повторите попытку!');
+                    guessing();
+                }
+            }
+        }
+
+    }
+
+    messageOut();
+};
+
+guessing()
